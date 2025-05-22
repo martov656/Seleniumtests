@@ -41,6 +41,32 @@ public class SearchTests {
         driver.quit();
     }
 
+    @Test
+    public void seznamSearchTests(){
+
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+
+        // for lecturer demo purpose only
+        // showOnSecondScreen();
+
+        driver.manage().window().maximize();
+        driver.get("https://search.seznam.cz/");
+        WebElement element = driver.findElement(By.name("q"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.clear();
+        element.sendKeys("Coderslab");
+        element.submit();
+        wait.until(ExpectedConditions.titleContains("Coderslab"));
+        Assertions.assertTrue(driver.getPageSource().contains("Coderslab"),"Searched key not found ...");
+
+        // for lecturer demo purpose only
+        threadSleep(5000);
+        driver.quit();
+
+    }
+
 
 
     private void showOnSecondScreen() {
