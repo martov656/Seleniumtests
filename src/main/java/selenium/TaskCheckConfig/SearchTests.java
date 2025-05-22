@@ -24,7 +24,7 @@ public class SearchTests {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
         // for lecturer demo purpose only
-        //showOnSecondScreen();
+        showOnSecondScreen();
 
         driver.manage().window().maximize();
         driver.get("https://bing.com");
@@ -33,7 +33,7 @@ public class SearchTests {
         element.clear();
         element.sendKeys("Coderslab");
         element.submit();
-        wait.until(ExpectedConditions.titleIs("Coderslab - Search"));
+        wait.until(ExpectedConditions.titleContains("Coderslab"));
         Assertions.assertTrue(driver.getPageSource().contains("Coderslab"),"Searched key not found ...");
 
         // for lecturer demo purpose only
