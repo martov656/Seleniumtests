@@ -48,7 +48,7 @@ public class SearchTests {
         driver.manage().window().setPosition(point);
     }
 
-    public void threadSleep(int time) {
+    private void threadSleep(int time) {
         try {
             Thread.sleep(time);
         } catch (Exception e) {
