@@ -24,7 +24,7 @@ public class SearchTests {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
         // for lecturer demo purpose only
-        showOnSecondScreen();
+        //showOnSecondScreen();
 
         driver.manage().window().maximize();
         driver.get("https://bing.com");
