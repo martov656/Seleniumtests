@@ -5,16 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.BasedSharedMethods;
 
-public class NavigationExample {
-
-    private WebDriver driver;
-
-    @BeforeEach
-    public void setUp() {
-        // Inicializace driveru před každým testem
-        driver = new ChromeDriver();
-    }
+public class NavigationExample extends BasedSharedMethods {
 
     @Test
     public void testNavigationFlow() {
@@ -38,13 +31,5 @@ public class NavigationExample {
 
         // 7. Obnovit stránku MyStore testlab
         driver.navigate().refresh();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        // Ukončit prohlížeč po testu
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }
