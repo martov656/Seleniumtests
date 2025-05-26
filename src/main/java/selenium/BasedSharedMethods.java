@@ -20,7 +20,7 @@ public class BasedSharedMethods {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        openOnSecondScreen_ForLecturerDemoOnly();
+       // openOnSecondScreen_ForLecturerDemoOnly();
         driver.manage().window().maximize();
     }
 
