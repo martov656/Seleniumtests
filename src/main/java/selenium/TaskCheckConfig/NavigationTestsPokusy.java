@@ -9,8 +9,6 @@ import java.time.Duration;
 
 public class NavigationTestsPokusy {
 
-    private WebDriver driver;
-
     @Test
     public void NavigationExercise2() {
 
