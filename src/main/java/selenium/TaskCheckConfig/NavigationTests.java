@@ -38,30 +38,22 @@ public class NavigationTests {
 
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        int time = 2000;
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         driver.get("https://www.google.com");
         wait.until(ExpectedConditions.titleContains("Google"));
-        this.threadSleep(time);
         driver.get("https://coderslab.com/en");
         wait.until(ExpectedConditions.titleContains("Online programming courses"));
-        this.threadSleep(time);
         driver.navigate().back();
         wait.until(ExpectedConditions.titleContains("Google"));
-        this.threadSleep(time);
         driver.get("https://mystore-testlab.coderslab.pl/index.php");
         wait.until(ExpectedConditions.titleContains("testlab"));
-        this.threadSleep(time);
         driver.navigate().back();
         wait.until(ExpectedConditions.titleContains("Google"));
-        this.threadSleep(time);
         driver.navigate().forward();
         wait.until(ExpectedConditions.titleContains("testlab"));
-        this.threadSleep(time);
         driver.navigate().refresh();
         wait.until(ExpectedConditions.titleContains("testlab"));
-        this.threadSleep(time);
 
         driver.quit();
 
