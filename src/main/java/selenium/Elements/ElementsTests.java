@@ -25,4 +25,27 @@ public class ElementsTests extends BasedSharedMethods {
     }
 
 
+    @Test
+    public void ex2ElementsByName () {
+
+        driver.get("https://hotel-testlab.coderslab.pl/en/");
+        WebElement element = driver.findElement(By.name("hotel_location"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys("Barcelona");
+
+        element = driver.findElement(By.name("search_room_submit"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element = driver.findElement(By.name("email"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys("test@test.com");
+
+        element = driver.findElement(By.name("submitNewsletter"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.submit();
+
+
+    }
+
+
 }
