@@ -49,7 +49,7 @@ public class ElementsTests extends BasedSharedMethods {
     }
 
     @Test
-    public void Ex3ElementsByClassName() {
+    public void ex3ElementsByClassName() {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.className("user_login"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -67,7 +67,7 @@ public class ElementsTests extends BasedSharedMethods {
     }
 
     @Test
-    public void Ex3ElementsByXPath() {
+    public void ex3ElementsByXPath() {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.xpath("//span[text()='Sign in']"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -87,7 +87,7 @@ public class ElementsTests extends BasedSharedMethods {
     @Test
     public void ex4ElementsByXPath() {
 
-        this.Ex3ElementsByXPath();
+        this.ex3ElementsByXPath();
 
         String title = "Mr.";
         WebElement element = driver.findElement(By.xpath("//label[contains(., '" + title + "')]"));
