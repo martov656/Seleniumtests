@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import selenium.BasedSharedMethods;
 
+import java.util.Random;
+
 public class ElementsTests extends BasedSharedMethods {
 
     @Test
@@ -52,6 +54,21 @@ public class ElementsTests extends BasedSharedMethods {
         WebElement element = driver.findElement(By.className("user_login"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+
+        element = driver.findElement(By.className("account_input"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        Random r = new Random();
+        int counter = r.nextInt(987654321);
+        element.sendKeys("test" + counter + "@test.com");
+
+        element = driver.findElement(By.className("icon-user"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+
+
+
+
+
 
     }
 
