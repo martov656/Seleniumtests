@@ -11,7 +11,7 @@ import java.util.Random;
 public class ElementsTests extends BasedSharedMethods {
 
     @Test
-    public void ex1ElementsById () {
+    public void ex1ElementsById() {
 
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.id("hotel_location"));
@@ -28,7 +28,7 @@ public class ElementsTests extends BasedSharedMethods {
 
 
     @Test
-    public void ex2ElementsByName () {
+    public void ex2ElementsByName() {
 
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.name("hotel_location"));
@@ -47,8 +47,9 @@ public class ElementsTests extends BasedSharedMethods {
         element.submit();
 
     }
+
     @Test
-    public void Ex3ElementsByClassName(){
+    public void Ex3ElementsByClassName() {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.className("user_login"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -66,7 +67,7 @@ public class ElementsTests extends BasedSharedMethods {
     }
 
     @Test
-    public void Ex3ElementsByXPath(){
+    public void Ex3ElementsByXPath() {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.xpath("//span[text()='Sign in']"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -84,12 +85,12 @@ public class ElementsTests extends BasedSharedMethods {
     }
 
     @Test
-    public void ex4ElementsByXPath(){
+    public void ex4ElementsByXPath() {
 
         this.Ex3ElementsByXPath();
 
         String title = "Mr.";
-        WebElement element = driver.findElement(By.xpath("//label[contains(., '"+ title +"')]"));
+        WebElement element = driver.findElement(By.xpath("//label[contains(., '" + title + "')]"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
 
@@ -108,8 +109,19 @@ public class ElementsTests extends BasedSharedMethods {
         element = driver.findElement(By.xpath("//button[contains(.,'Register')]"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
-
     }
 
-    
+    @Test
+    public void ex5ElementsByCSS() {
+
+        this.ex4ElementsByXPath();
+        WebElement element = driver.findElement(By.cssSelector("i.icon-user"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element = driver.findElement(By.cssSelector("i.icon-building"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element = driver.findElement(By.cssSelector("a[title='Home']"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
 }
