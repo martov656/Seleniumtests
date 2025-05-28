@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 
 public class BasedSharedMethods {
@@ -20,7 +21,7 @@ public class BasedSharedMethods {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-       // openOnSecondScreen_ForLecturerDemoOnly();
+        openOnSecondScreen_ForLecturerDemoOnly();
         driver.manage().window().maximize();
     }
 
@@ -35,25 +36,40 @@ public class BasedSharedMethods {
     // *********************** helper methods *************************
 
     protected void openOnSecondScreen_ForLecturerDemoOnly() {
-        driver.manage().window().setPosition(new Point(-2000, 0));
+        if (IsOnLecturerPc()) {
+            driver.manage().window().setPosition(new Point(-2000, 0));
+        }
     }
 
     protected void waitBeforeClosing_ForLecturerDemoOnly() {
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (IsOnLecturerPc()) {
+            try {
+                Thread.sleep(5000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     protected void wait2Sec_ForLecturerDemoOnly() {
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (IsOnLecturerPc()) {
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
-
+    private boolean IsOnLecturerPc() {
+        boolean inLecturerPc = false;
+        File file = new File(System.getProperty("user.dir") + File.separator + "runInLecturerPc.txt");
+        if (file.exists()) {
+            inLecturerPc = true;
+        }
+        return inLecturerPc;
+    }
 }
+
+
+

@@ -48,11 +48,10 @@ public class ElementsTests extends BasedSharedMethods {
     }
     @Test
     public void Ex3ElementsByClassName(){
-    driver.get("https://hotel-testlab.coderslab.pl/en/");
-    WebElement element = driver.findElement(By.className("hide_xs"));
-    wait.until(ExpectedConditions.elementToBeClickable(element));
-    element.click();
-
+        driver.get("https://hotel-testlab.coderslab.pl/en/");
+        WebElement element = driver.findElement(By.className("user_login"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
 
     }
 
