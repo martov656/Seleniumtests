@@ -46,7 +46,6 @@ public class ElementsTests extends BasedSharedMethods {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.submit();
 
-
     }
     @Test
     public void Ex3ElementsByClassName(){
@@ -84,5 +83,33 @@ public class ElementsTests extends BasedSharedMethods {
         element.click();
     }
 
+    @Test
+    public void ex4ElementsByXPath(){
 
+        this.Ex3ElementsByXPath();
+
+        String title = "Mr.";
+        WebElement element = driver.findElement(By.xpath("//label[contains(., '"+ title +"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+
+        element = driver.findElement(By.xpath("//input[@id='customer_firstname']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys("Petr");
+
+        element = driver.findElement(By.xpath("//input[@id='customer_lastname']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys("Pollak");
+
+        element = driver.findElement(By.xpath("//input[@id='passwd']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys("Heslo12345");
+
+        element = driver.findElement(By.xpath("//button[contains(.,'Register')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+
+    }
+
+    
 }
