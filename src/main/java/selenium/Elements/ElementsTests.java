@@ -64,12 +64,24 @@ public class ElementsTests extends BasedSharedMethods {
         element = driver.findElement(By.className("icon-user"));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+    }
 
+    @Test
+    public void Ex3ElementsByXPath(){
+        driver.get("https://hotel-testlab.coderslab.pl/en/");
+        WebElement element = driver.findElement(By.xpath("//span[text()='Sign in']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
 
+        element = driver.findElement(By.xpath("//input[@id='email_create']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        Random r = new Random();
+        int counter = r.nextInt(987654321);
+        element.sendKeys("test" + counter + "@test.com");
 
-
-
-
+        element = driver.findElement(By.xpath("//button[contains(.,'Create an account')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
     }
 
 
