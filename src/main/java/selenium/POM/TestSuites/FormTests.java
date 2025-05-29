@@ -22,40 +22,23 @@ public class FormTests {
         driver = new ChromeDriver();
         openOnSecondScreen_ForLecturerDemoOnly();
         driver.manage().window().maximize();
-        fp = PageFactory.initElements(driver,FormPage.class);
+        fp = PageFactory.initElements(driver, FormPage.class);
         driver.get("https://katalon-test.s3.amazonaws.com/demo-aut/dist/html/form.html");
     }
 
     @Test
-    public void formTest() throws InterruptedException {
-
-        fp.fillInName("John","Smith");
-
-
-        fp.selectMaleGender();
-
-
-        fp.fillInDateOfBirth("05/22/2010");
-
-
-        fp.addressOfResidence(51, "Monticello Dr");
-
-
-        fp.emailAddress("john.smith@mailinator.com");
-
-
-        fp.passwordForm("Pass123");
-
-
-        fp.companyName("Coders Lab");
-
-
-        fp.fillInComment("This is my first test machine");
-
-
-        fp.clickSubmitButton();;
-
+    public void formTest() {
+        fp.fillInName("John", "Meloun");
+        fp.fillInDateOfBirth("09/07/1934");
+        fp.fillInAddress("Vodickova 1, Prague, Czech Republic, 10100, ");
+        fp.fillInComments("this is the test, that the comment section is working properly and it's editable");
+        fp.fillInEmail("john@meloun.com");
+        fp.fillInCompany("Meloun s.r.o.");
+        fp.fillInPassword("meloun1234");
+        fp.fillInDateOfBirth("09/07/1934");
     }
+
+
 
     @AfterEach
     public void tearDown() {
