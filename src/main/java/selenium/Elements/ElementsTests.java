@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import selenium.BasedSharedMethods;
-
-import java.util.List;
 import java.util.Random;
 
 public class ElementsTests extends BasedSharedMethods {
