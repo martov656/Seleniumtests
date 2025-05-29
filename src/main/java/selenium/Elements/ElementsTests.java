@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import selenium.BasedSharedMethods;
 
+import java.util.List;
 import java.util.Random;
 
 public class ElementsTests extends BasedSharedMethods {
@@ -121,7 +122,7 @@ public class ElementsTests extends BasedSharedMethods {
         element = driver.findElement(By.cssSelector("i.icon-building"));
         wait.until(ExpectedConditions.visibilityOf(element));
 
-        element = driver.findElement(By.cssSelector("a[title='Home']"));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        element = driver.findElement(By.cssSelector("a[title='Home'] > span > i.icon-chevron-left"));
+        element.click();
     }
 }
