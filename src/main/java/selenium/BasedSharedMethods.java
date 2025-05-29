@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -19,6 +21,8 @@ public class BasedSharedMethods {
     public void setUp() {
         // Inicializace driveru před každým testem
         driver = new ChromeDriver();
+        //driver = new EdgeDriver();
+        //driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         openOnSecondScreen_ForLecturerDemoOnly();
