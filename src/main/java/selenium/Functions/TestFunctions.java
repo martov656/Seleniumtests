@@ -14,7 +14,7 @@ public class TestFunctions extends BasedSharedMethods {
 
 
     @Test
-    public void ex4ElementsByXPath() {
+    public void ex1Functions() {
 
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement element = driver.findElement(By.className("user_login"));
@@ -53,10 +53,10 @@ public class TestFunctions extends BasedSharedMethods {
 
         Assertions.assertTrue(element.isDisplayed(), "Register button is not visible!");
         element.click();
-        element = driver.findElement(By.xpath("//p[contains(@class,'alert-success')]"));
+        element = driver.findElement(By.xpath("//p[contains(@class,'alert-success') and contains(.,'Your account has been created.')]"));
         wait.until(ExpectedConditions.visibilityOf(element));
         Assertions.assertTrue(element.isDisplayed(), "User not registered.");
 
-
     }
+
 }
