@@ -121,6 +121,6 @@ public class ElementsTests extends BasedSharedMethods {
         wait.until(ExpectedConditions.visibilityOf(element));
 
         element = driver.findElement(By.cssSelector("a[title='Home'] > span > i.icon-chevron-left"));
-        element.click();
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }
