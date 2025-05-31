@@ -10,24 +10,36 @@ import org.openqa.selenium.support.PageFactory;
 import selenium.POM.Pages.FormPage;
 
 import java.io.File;
+import java.time.Duration;
 
 public class FormTests {
+
     private WebDriver driver;
     private FormPage fp;
 
     @BeforeEach
     public void setUp() {
         driver = new ChromeDriver();
-        openOnSecondScreen_ForLecturerDemoOnly();
-        driver.manage().window().maximize();
-        fp = PageFactory.initElements(driver,FormPage.class);
+        fp = PageFactory.initElements(driver, FormPage.class);
         driver.get("https://katalon-test.s3.amazonaws.com/demo-aut/dist/html/form.html");
     }
 
     @Test
-    public void formTest(){
-        fp.fillInName("John","Malone");
-    }
+    public void formTest() throws InterruptedException {
+        fp.fillInName("Reese", "Witherspoon");
+        Thread.sleep(5000);
+
+        fp.selectFemaleGender();;
+        Thread.sleep(5000);
+
+        fp.fillInDateOfBirth(22,3, 1976);
+        Thread.sleep(5000);
+
+        fp.addressOfResidence(9500, "Wilshire Blvd", "Beverly Hills", "CA", 90212, "USA");
+        Thread.sleep(5000);
+
+
+        }
 
     @AfterEach
     public void tearDown() {
@@ -72,5 +84,7 @@ public class FormTests {
         }
         return inLecturerPc;
     }
-
 }
+
+
+
