@@ -27,8 +27,34 @@ public class FormTests {
     }
 
     @Test
-    public void formTest(){
-        fp.fillInName("John","Malone");
+    public void formTest() throws InterruptedException {
+
+        fp.fillInName("John","Smith");
+
+
+        fp.selectMaleGender();
+
+
+        fp.fillInDateOfBirth("05/22/2010");
+
+
+        fp.addressOfResidence(51, "Monticello Dr");
+
+
+        fp.emailAddress("john.smith@mailinator.com");
+
+
+        fp.passwordForm("Pass123");
+
+
+        fp.companyName("Coders Lab");
+
+
+        fp.fillInComment("This is my first test machine");
+
+
+        fp.clickSubmitButton();;
+
     }
 
     @AfterEach
