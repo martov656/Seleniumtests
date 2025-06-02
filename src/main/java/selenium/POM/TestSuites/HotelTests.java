@@ -10,9 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import selenium.POM.Pages.FormPage;
-import selenium.POM.Pages.HotelAuthPage;
-import selenium.POM.Pages.HotelHomePage;
+import selenium.POM.Pages.*;
 
 import java.io.File;
 
@@ -20,7 +18,8 @@ public class HotelTests {
     private WebDriver driver;
     private HotelHomePage hhp;
     private HotelAuthPage hap;
-
+    private HotelAccountPage hacp;
+    private HotelProfilePage hpp;
 
     @BeforeEach
     public void setUp() {
@@ -29,6 +28,8 @@ public class HotelTests {
         driver.manage().window().maximize();
         hhp = PageFactory.initElements(driver, HotelHomePage.class);
         hap = PageFactory.initElements(driver, HotelAuthPage.class);
+        hacp = PageFactory.initElements(driver, HotelAccountPage.class);
+        hpp = PageFactory.initElements(driver, HotelProfilePage.class);
         driver.get("https://hotel-testlab.coderslab.pl/en/");
     }
 
@@ -36,12 +37,8 @@ public class HotelTests {
     public void registerUserTest() {
         hhp.signInButton();
         hap.submit();
-
-
-
-
-
-
+        hacp.registerUser("David", "Kriz", "Heslo123");
+        hpp.verifyUserCreated();
 
     }
 
