@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import selenium.POM.Pages.FormPage;
-
 import java.io.File;
 
 public class HotelTests {
