@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 public class FormPage extends BasePage {
     public FormPage(WebDriver driver) {
@@ -33,6 +34,10 @@ public class FormPage extends BasePage {
 
     @FindBy(id = "comment")
     WebElement commentInput;
+
+    @FindBy(id="role")
+    WebElement selectRole;
+
 
     public void fillInName(String name, String surname) {
         wait.until(ExpectedConditions.elementToBeClickable(firstNameInput));
@@ -79,4 +84,8 @@ public class FormPage extends BasePage {
         commentInput.sendKeys(comments);
     }
 
+    public void selectRole(String role){
+        Select select = new Select(selectRole);
+        select.selectByVisibleText(role);
+    }
 }

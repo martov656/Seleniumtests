@@ -36,6 +36,7 @@ public class FormTests {
         fp.fillInCompany("Meloun s.r.o.");
         fp.fillInPassword("meloun1234");
         fp.fillInDateOfBirth("09/07/1934");
+        fp.selectRole("QA");
     }
 
 
