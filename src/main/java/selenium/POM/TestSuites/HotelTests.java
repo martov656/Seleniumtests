@@ -3,13 +3,23 @@ package selenium.POM.TestSuites;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import selenium.POM.Pages.FormPage;
+import selenium.POM.Pages.HotelAuthPage;
+import selenium.POM.Pages.HotelHomePage;
+
 import java.io.File;
 
 public class HotelTests {
     private WebDriver driver;
+    private HotelHomePage hhp;
+    private HotelAuthPage hap;
 
 
     @BeforeEach
@@ -17,11 +27,22 @@ public class HotelTests {
         driver = new ChromeDriver();
         openOnSecondScreen_ForLecturerDemoOnly();
         driver.manage().window().maximize();
+        hhp = PageFactory.initElements(driver, HotelHomePage.class);
+        hap = PageFactory.initElements(driver, HotelAuthPage.class);
         driver.get("https://hotel-testlab.coderslab.pl/en/");
     }
 
     @Test
     public void registerUserTest() {
+        hhp.signInButton();
+        hap.submit();
+
+
+
+
+
+
+
     }
 
 
