@@ -1,6 +1,7 @@
 package selenium.POM.TestSuites;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Point;
@@ -38,8 +39,51 @@ public class FormTests {
         fp.addressOfResidence(9500, "Wilshire Blvd", "Beverly Hills", "CA", 90212, "USA");
         Thread.sleep(5000);
 
+        fp.emailAddress("Reese@Witherspoon.com");
+        Thread.sleep(5000);
 
-        }
+        fp.passwordForm("Reese1976");
+        Thread.sleep(5000);
+
+        fp.companyName("Hello Sunshine");
+        Thread.sleep(5000);
+
+        fp.selectRole("Manager");
+        Thread.sleep(5000);
+
+        fp.selectJobExpectation("Challenging");
+        Thread.sleep(5000);
+
+        fp.selectContributeCheckbox();
+        Thread.sleep(5000);
+
+        fp.fillInComment("Entepreneur and Actress");
+        Thread.sleep(5000);
+
+        fp.clickSubmitButton();;
+        Thread.sleep(5000);
+
+
+    }
+
+    @Test
+    public void formShouldNotSubmitWithoutFirstName() {
+        fp.fillInName("", "Wither"); // jméno prázdné
+        fp.selectGender("female");
+        fp.fillInDateOfBirth(22, 3, 1976);
+        fp.selectRole("Manager");
+        fp.selectExpectations("Challenging");
+        fp.selectContributeCheckbox();
+
+        fp.clickSubmitButton();
+
+        // Ověříš, že zůstáváš na stejné stránce (formulář se neodešle)
+        Assertions.assertTrue(fp.isFormDisplayed(), "Formulář by měl zůstat zobrazený");
+
+        // Nebo ověříš chybovou hlášku (pokud se zobrazuje)
+        Assertions.assertTrue(fp.getValidationMessage().contains("Please fill out this field"));
+    }
+
 
     @AfterEach
     public void tearDown() {
