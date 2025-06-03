@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class HotelProfilePage extends BasePage{
+public class HotelProfilePage extends BasePage {
     public HotelProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -14,9 +14,16 @@ public class HotelProfilePage extends BasePage{
     @FindBy(xpath = "//p[contains(@class,'alert-success')]")
     WebElement confirmationUserCreate;
 
+    @FindBy(xpath = "//a/span[contains(.,'Home')]")
+    WebElement buttonGoHome;
+
     public void verifyUserCreated() {
         wait.until(ExpectedConditions.visibilityOf(confirmationUserCreate));
         Assertions.assertTrue(confirmationUserCreate.isDisplayed(), "User creation confirmation not registered.");
+    }
 
+    public void goHomePage() {
+        wait.until(ExpectedConditions.visibilityOf(buttonGoHome));
+        buttonGoHome.click();
     }
 }

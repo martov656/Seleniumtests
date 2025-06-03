@@ -20,6 +20,7 @@ public class HotelTests {
     private HotelAuthPage hap;
     private HotelAccountPage hacp;
     private HotelProfilePage hpp;
+    private SearchResultPage srp;
 
     @BeforeEach
     public void setUp() {
@@ -30,6 +31,7 @@ public class HotelTests {
         hap = PageFactory.initElements(driver, HotelAuthPage.class);
         hacp = PageFactory.initElements(driver, HotelAccountPage.class);
         hpp = PageFactory.initElements(driver, HotelProfilePage.class);
+        srp = PageFactory.initElements(driver, SearchResultPage.class);
         driver.get("https://hotel-testlab.coderslab.pl/en/");
     }
 
@@ -42,7 +44,15 @@ public class HotelTests {
 
     }
 
-
+    @Test
+    public void selectionHotelTest() {
+        hhp.signInButton();
+        hap.login("tree@sezo.com", "Lennon1980");
+        hpp.goHomePage();
+        hhp.verifyHomePageShow();
+        hhp.searchByButton("DefCity", "The Hotel Prime", "06-06-2025", "08-06-2025");
+        srp.verifyHotelsSearch();
+    }
 
     @AfterEach
     public void tearDown() {
