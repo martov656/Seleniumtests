@@ -1,6 +1,7 @@
 package selenium.POM.Pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,7 +48,9 @@ public class HotelHomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(hotelLocation));
         hotelLocation.sendKeys(location);
         wait.until(ExpectedConditions.elementToBeClickable(hotelCategory));
-        hotelCategory.sendKeys(category);
+        hotelCategory.click();
+        WebElement element = driver.findElement(By.xpath("//ul[@class='dropdown-menu hotel_dropdown_ul']/li[text()='"+category+"']"));
+        element.click();
         wait.until(ExpectedConditions.elementToBeClickable(checkInDate));
         checkInDate.sendKeys(checkIn);
         wait.until(ExpectedConditions.elementToBeClickable(checkOutDate));

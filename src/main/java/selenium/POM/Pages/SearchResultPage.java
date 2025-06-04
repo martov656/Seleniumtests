@@ -11,11 +11,11 @@ public class SearchResultPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(id = "header_logo")
-    WebElement headerLogo;
+    @FindBy(xpath = "//div/p[text()='Sort By:']")
+    WebElement labelSortBy;
 
     public void verifyHotelsSearch() {
-        wait.until(ExpectedConditions.visibilityOf(headerLogo));
-        Assertions.assertTrue(headerLogo.isDisplayed(), "User hotels not searched.");
+        wait.until(ExpectedConditions.visibilityOf(labelSortBy));
+        Assertions.assertTrue(labelSortBy.isDisplayed(), "User hotels not searched.");
     }
 }

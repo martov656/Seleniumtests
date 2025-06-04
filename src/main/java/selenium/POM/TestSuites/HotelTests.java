@@ -13,6 +13,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import selenium.POM.Pages.*;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HotelTests {
     private WebDriver driver;
@@ -50,7 +53,11 @@ public class HotelTests {
         hap.login("tree@sezo.com", "Lennon1980");
         hpp.goHomePage();
         hhp.verifyHomePageShow();
-        hhp.searchByButton("DefCity", "The Hotel Prime", "06-06-2025", "08-06-2025");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Date dt = new Date();
+        String dataIn = df.format(dt);
+        String dataOut = df.format(new Date(dt.getTime() + (2 * 1000 * 60 * 60 * 24)));
+        hhp.searchByButton("DefCity", "The Hotel Prime", dataIn, dataOut);
         srp.verifyHotelsSearch();
     }
 
