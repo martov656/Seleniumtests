@@ -44,6 +44,4 @@ public class DemoSteps {
         Assertions.assertEquals(z, this.result, "Result failed");
         System.out.println("We got " + this.result);
     }
-
-
 }
