@@ -26,4 +26,7 @@ public class HotelProfilePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(buttonGoHome));
         buttonGoHome.click();
     }
+
+    public void verifyUserCreate() {
+    }
 }

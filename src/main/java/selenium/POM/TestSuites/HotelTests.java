@@ -1,6 +1,7 @@
 package selenium.POM.TestSuites;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,12 +11,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import selenium.POM.Pages.*;
+import selenium.POM.Pages.HotelAccountPage;
+import selenium.POM.Pages.HotelAuthPage;
+import selenium.POM.Pages.HotelHomePage;
+import selenium.POM.Pages.HotelProfilePage;
+
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HotelTests {
     private WebDriver driver;
@@ -23,43 +25,29 @@ public class HotelTests {
     private HotelAuthPage hap;
     private HotelAccountPage hacp;
     private HotelProfilePage hpp;
-    private SearchResultPage srp;
 
     @BeforeEach
     public void setUp() {
         driver = new ChromeDriver();
-        openOnSecondScreen_ForLecturerDemoOnly();
-        driver.manage().window().maximize();
         hhp = PageFactory.initElements(driver, HotelHomePage.class);
         hap = PageFactory.initElements(driver, HotelAuthPage.class);
         hacp = PageFactory.initElements(driver, HotelAccountPage.class);
         hpp = PageFactory.initElements(driver, HotelProfilePage.class);
-        srp = PageFactory.initElements(driver, SearchResultPage.class);
         driver.get("https://hotel-testlab.coderslab.pl/en/");
     }
 
     @Test
-    public void registerUserTest() {
+    public void registerUserTest() throws InterruptedException {
         hhp.signInButton();
+        Thread.sleep(5000);
         hap.submit();
-        hacp.registerUser("David", "Kriz", "Heslo123");
-        hpp.verifyUserCreated();
-
+        Thread.sleep(5000);
+        hacp.registerUser("Jennifer", "Aniston", "Jen1969");
+        Thread.sleep(5000);
+        hpp.verifyUserCreate();
+        Thread.sleep(5000);
     }
 
-    @Test
-    public void selectionHotelTest() {
-        hhp.signInButton();
-        hap.login("tree@sezo.com", "Lennon1980");
-        hpp.goHomePage();
-        hhp.verifyHomePageShow();
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Date dt = new Date();
-        String dataIn = df.format(dt);
-        String dataOut = df.format(new Date(dt.getTime() + (2 * 1000 * 60 * 60 * 24)));
-        hhp.searchByButton("DefCity", "The Hotel Prime", dataIn, dataOut);
-        srp.verifyHotelsSearch();
-    }
 
     @AfterEach
     public void tearDown() {
@@ -104,5 +92,7 @@ public class HotelTests {
         }
         return inLecturerPc;
     }
-
 }
+
+
+

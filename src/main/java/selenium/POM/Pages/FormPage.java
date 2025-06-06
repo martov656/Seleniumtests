@@ -6,7 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Collection;
+
 public class FormPage extends BasePage {
+
     public FormPage(WebDriver driver) {
         super(driver);
     }
@@ -17,27 +20,38 @@ public class FormPage extends BasePage {
     @FindBy(id = "last-name")
     WebElement lastNameInput;
 
+    @FindBy(xpath = "//label[contains(text(),'Female')]/input")
+    private WebElement femaleGenderInput;
+
     @FindBy(id = "dob")
     WebElement dateOfBirthInput;
 
     @FindBy(id = "address")
-    WebElement addressInput;
+    WebElement addressOfResidenceInput;
 
     @FindBy(id = "email")
-    WebElement emailInput;
+    WebElement emailAddressInput;
 
     @FindBy(id = "password")
     WebElement passwordInput;
 
     @FindBy(id = "company")
-    WebElement companyInput;
+    WebElement companyNameInput;
+
+    @FindBy(id = "role")
+    WebElement selectRoleInput;
+
+    @FindBy(id = "expectation")
+    WebElement selectExpectation;
+
+    @FindBy(xpath = "//label[contains(text(),'Via discovery and experiment')]/input")
+    WebElement contributeCheckbox;
 
     @FindBy(id = "comment")
     WebElement commentInput;
 
-    @FindBy(id="role")
-    WebElement selectRole;
-
+    @FindBy(id = "submit")
+    WebElement submitButton;
 
     public void fillInName(String name, String surname) {
         wait.until(ExpectedConditions.elementToBeClickable(firstNameInput));
@@ -48,44 +62,99 @@ public class FormPage extends BasePage {
         lastNameInput.sendKeys(surname);
     }
 
-    public void fillInDateOfBirth(String dateOfBirth) {
+    public void selectFemaleGender() {
+        wait.until(ExpectedConditions.elementToBeClickable(femaleGenderInput));
+        femaleGenderInput.click();
+    }
+
+
+    public void fillInDateOfBirth(int day, int month, int year) {
         wait.until(ExpectedConditions.elementToBeClickable(dateOfBirthInput));
         dateOfBirthInput.clear();
-        dateOfBirthInput.sendKeys(dateOfBirth);
+
+        String formattedDate = String.format("%02d.%02d.%d", day, month, year);
+        dateOfBirthInput.sendKeys(formattedDate);
     }
 
-    public void fillInAddress(String address) {
-        wait.until(ExpectedConditions.elementToBeClickable(addressInput));
-        addressInput.clear();
-        addressInput.sendKeys(address);
+    public void addressOfResidence(int number, String street, String district, String state, int postal, String country) {
+        wait.until(ExpectedConditions.elementToBeClickable(addressOfResidenceInput));
+        addressOfResidenceInput.clear();
+        addressOfResidenceInput.sendKeys(String.valueOf(9500) + " , " + street + " , " + district + " , " + state + " , " + String.valueOf(90212) + " ," + country);
+
     }
 
-    public void fillInEmail(String email) {
-        wait.until(ExpectedConditions.elementToBeClickable(emailInput));
-        emailInput.clear();
-        emailInput.sendKeys(email);
+    public void emailAddress(String email) {
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressInput));
+        emailAddressInput.clear();
+        emailAddressInput.sendKeys(email);
+
     }
 
-    public void fillInPassword(String password) {
+    public void passwordForm(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
         passwordInput.clear();
         passwordInput.sendKeys(password);
+
     }
 
-    public void fillInCompany(String company) {
-        wait.until(ExpectedConditions.elementToBeClickable(companyInput));
-        companyInput.clear();
-        companyInput.sendKeys(company);
+    public void companyName(String company) {
+        wait.until(ExpectedConditions.elementToBeClickable(companyNameInput));
+        companyNameInput.clear();
+        companyNameInput.sendKeys(company);
+
     }
 
-    public void fillInComments(String comments) {
+
+
+public void selectRole(String expectation) {
+    wait.until(ExpectedConditions.elementToBeClickable(selectRoleInput));
+    Select select = new Select(selectRoleInput);
+    select.selectByVisibleText(expectation);
+
+    }
+
+    public void selectJobExpectation(String... expectations) {
+        wait.until(ExpectedConditions.elementToBeClickable(selectExpectation));
+        Select select = new Select(selectExpectation);
+        for (String expectation : expectations) {
+            select.selectByVisibleText(expectation);
+        }
+
+
+    }
+
+
+    public void selectContributeCheckbox() {
+        if (!contributeCheckbox.isSelected()) {
+            contributeCheckbox.click();
+        }
+
+    }
+
+    public void fillInComment(String text) {
         wait.until(ExpectedConditions.elementToBeClickable(commentInput));
         commentInput.clear();
-        commentInput.sendKeys(comments);
+        commentInput.sendKeys(text);
+
     }
 
-    public void selectRole(String role){
-        Select select = new Select(selectRole);
-        select.selectByVisibleText(role);
+    public void clickSubmitButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton));
+        submitButton.click();
+
+    }
+
+    public boolean isFormDisplayed() {
+        return firstNameInput.isDisplayed();
+    }
+
+    public Collection<Object> getValidationMessage() {
+        return java.util.List.of();
+    }
+
+    public void selectExpectations(String challenging) {
+    }
+
+    public void selectGender(String female) {
     }
 }

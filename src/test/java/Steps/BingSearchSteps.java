@@ -45,7 +45,7 @@ public class BingSearchSteps {
 
     @Then ("close browser")
     public void closeBrowser(){
-    driver.quit();
+        driver.quit();
     }
 }
 
