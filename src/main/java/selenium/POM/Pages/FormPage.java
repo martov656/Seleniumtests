@@ -15,7 +15,7 @@ public class FormPage extends BasePage {
     }
 
     @FindBy(id = "first-name")
-    WebElement firstNameInput;
+    private WebElement firstNameInput;
 
     @FindBy(id = "last-name")
     WebElement lastNameInput;
@@ -157,4 +157,10 @@ public void selectRole(String expectation) {
 
     public void selectGender(String female) {
     }
+
+    public WebElement getFirstNameInput() {
+        return firstNameInput;
+    }
+
+
 }

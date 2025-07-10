@@ -4,8 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.POM.Pages.FormPage;
@@ -22,7 +21,9 @@ public class FormTests {
     public void setUp() {
         driver = new ChromeDriver();
         fp = PageFactory.initElements(driver, FormPage.class);
+        driver.manage().window().maximize();
         driver.get("https://katalon-test.s3.amazonaws.com/demo-aut/dist/html/form.html");
+
     }
 
     @Test
@@ -67,22 +68,41 @@ public class FormTests {
     }
 
     @Test
-    public void formShouldNotSubmitWithoutFirstName() {
-        fp.fillInName("", "Wither"); // jméno prázdné
-        fp.selectGender("female");
-        fp.fillInDateOfBirth(22, 3, 1976);
+    public void Test()  {
+        fp.fillInName("Reese", "Witherspoon");
+        fp.selectFemaleGender();;
+        fp.fillInDateOfBirth(22,3, 1976);
+        fp.addressOfResidence(9500, "Wilshire Blvd", "Beverly Hills", "CA", 90212, "USA");
+        fp.emailAddress("Reese@Witherspoon.com");
+        fp.passwordForm("Reese1976");
+        fp.companyName("Hello Sunshine");
         fp.selectRole("Manager");
-        fp.selectExpectations("Challenging");
+        fp.selectJobExpectation("Challenging");
         fp.selectContributeCheckbox();
+        fp.fillInComment("Entepreneur and Actress");
+        fp.clickSubmitButton();;
 
-        fp.clickSubmitButton();
 
-        // Ověříš, že zůstáváš na stejné stránce (formulář se neodešle)
-        Assertions.assertTrue(fp.isFormDisplayed(), "Formulář by měl zůstat zobrazený");
-
-        // Nebo ověříš chybovou hlášku (pokud se zobrazuje)
-        Assertions.assertTrue(fp.getValidationMessage().contains("Please fill out this field"));
     }
+
+    @Test
+    public void Test2()  {
+        fp.fillInName("Jennifer", "Aniston");
+        fp.selectFemaleGender();;
+        fp.fillInDateOfBirth(11,2, 1969);
+        fp.addressOfResidence(9500, "Hollywood Blvd", "Burbank", "CA", 90212, "USA");
+        fp.emailAddress("Jen@Anniston.com");
+        fp.passwordForm("Jen1969");
+        fp.companyName("SmartWater");
+        fp.selectRole("Business Analyst");
+        fp.selectJobExpectation("Good teamwork");
+        fp.selectContributeCheckbox();
+        fp.fillInComment("American actress");
+        fp.clickSubmitButton();;
+
+
+    }
+
 
 
     @AfterEach
@@ -128,7 +148,10 @@ public class FormTests {
         }
         return inLecturerPc;
     }
-}
+
+
+    }
+
 
 
 

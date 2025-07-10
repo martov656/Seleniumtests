@@ -33,6 +33,7 @@ public class HotelTests {
         hap = PageFactory.initElements(driver, HotelAuthPage.class);
         hacp = PageFactory.initElements(driver, HotelAccountPage.class);
         hpp = PageFactory.initElements(driver, HotelProfilePage.class);
+        driver.manage().window().maximize();
         driver.get("https://hotel-testlab.coderslab.pl/en/");
     }
 
@@ -46,6 +47,24 @@ public class HotelTests {
         Thread.sleep(5000);
         hpp.verifyUserCreate();
         Thread.sleep(5000);
+    }
+
+    @Test
+    public void UserTest() {
+        hhp.signInButton();
+        hap.submit();
+        hacp.registerUser("Jennifer", "Aniston", "Jen1969");
+        hpp.verifyUserCreate();
+
+    }
+
+    @Test
+    public void UserTest2() {
+        hhp.signInButton();
+        hap.submit();
+        hacp.registerUser("Reese", "Witherspoon", "Reese1976");
+        hpp.verifyUserCreate();
+
     }
 
 
