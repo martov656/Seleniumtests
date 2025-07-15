@@ -1,33 +1,15 @@
 package selenium.TaskCheckConfig;
 
-import com.google.common.base.Predicate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.BasedSharedMethods;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.time.Duration;
-import java.nio.file.Files;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.io.File;
-import java.util.List;
-
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-
-import static com.google.common.base.Predicates.equalTo;
-
-public class SearchTests extends BasedSharedMethods {
+public class IMDBTests extends BasedSharedMethods {
 
     @Test
     public void bingSearchTest() {

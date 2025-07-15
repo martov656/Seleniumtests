@@ -1,6 +1,7 @@
 package selenium.POM.Pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,4 +19,7 @@ public class SearchResultPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(labelSortBy));
         Assertions.assertTrue(labelSortBy.isDisplayed(), "User hotels not searched.");
     }
-}
+
+
+    }
+
