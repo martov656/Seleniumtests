@@ -57,6 +57,57 @@ public class SearchTests extends BasedSharedMethods {
 
     }
 
+    @Test
+    public void bingSearchTestBara() throws InterruptedException {
+
+        driver.get("https://bing.com");
+        WebElement element = driver.findElement(By.name("q"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        Thread.sleep(5000);
+        element.clear();
+        element.sendKeys("Bára Pešková");
+        Thread.sleep(5000);
+        element.submit();
+        wait.until(ExpectedConditions.titleContains("Bára Pešková"));
+        Assertions.assertTrue(driver.getPageSource().contains("Bára Pešková"), "Searched key not found ...");
+        Thread.sleep(5000);
+
+    }
+
+    @Test
+    public void bingSearchTestBara2() throws InterruptedException {
+
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
+        searchBox.clear();
+        searchBox.sendKeys("Bára Pešková Instagram");
+        searchBox.submit();
+        Thread.sleep(5000);
+
+        // Vyčkej na načtení výsledků, můžeš zvýšit timeout pokud je notebook pomalejší
+        wait.until(ExpectedConditions.titleContains("Bára Pešková"));
+
+        // Najdi a klikni na odkaz na Instagram
+        WebElement instaLink = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//a[contains(@href, 'instagram.com/barapeskova')]")
+        ));
+        instaLink.click();
+        Thread.sleep(5000);
+        // Přepnout na novou záložku (Instagram se často otevře v nové)
+        for (String windowHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(windowHandle);
+        }
+
+        // Počkej, než se načte Instagram
+        wait.until(ExpectedConditions.urlContains("instagram.com/barapeskova"));
+        Assertions.assertTrue(driver.getCurrentUrl().contains("barapeskova"),
+                "Nepodařilo se přejít na Instagram profil.");
+        Thread.sleep(5000);
+
+    }
+
 
     @Test
     public void googleTests() {
@@ -267,9 +318,6 @@ public class SearchTests extends BasedSharedMethods {
     }
 
 
-
-
-
     @Test
     public void imdbSearchTestElvis() {
         driver.get("https://www.imdb.com/");
@@ -451,5 +499,200 @@ public class SearchTests extends BasedSharedMethods {
         Assertions.assertTrue(metaContent.contains("Underworld"), "Meta tag neobsahuje očekávaný film.");
     }
 
+    @Test
+    public void seznamSearchTests3() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        // Vyhledávací pole podle nového selektoru
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.name("ribbon--search")));
+
+        // Zadání dotazu
+        searchField.clear();
+        searchField.sendKeys("Kate Beckinsale");
+        searchField.sendKeys(Keys.ENTER); // submit nefunguje na tomhle webu
+        Thread.sleep(4000);
+        // Čekání na změnu titulku
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.titleContains("Kate Beckinsale"),
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector("main"))
+        ));
+
+        // Ověření výskytu textu
+        Assertions.assertTrue(driver.getPageSource().toLowerCase().contains("kate beckinsale"),
+                "Searched key not found ...");
+    }
+
+    @Test
+    public void seznamSearchTests4() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        // Vyhledávací pole podle nového selektoru
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.name("ribbon--search")));
+
+        // Zadání dotazu
+        searchField.clear();
+        searchField.sendKeys("Reese Witherspoon");
+        searchField.sendKeys(Keys.ENTER); // submit nefunguje na tomhle webu
+        Thread.sleep(4000);
+        // Čekání na změnu titulku
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.titleContains("Reese Witherspoon"),
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector("main"))
+        ));
+
+        // Ověření výskytu textu
+        Assertions.assertTrue(driver.getPageSource().toLowerCase().contains("reese witherspoon"),
+                "Searched key not found ...");
+    }
+
+    @Test
+    public void seznamSearchTests5() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        // Vyhledávací pole podle nového selektoru
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.name("ribbon--search")));
+
+        // Zadání dotazu
+        searchField.clear();
+        searchField.sendKeys("Little Caprice");
+        searchField.sendKeys(Keys.ENTER); // submit nefunguje na tomhle webu
+        Thread.sleep(4000);
+        // Čekání na změnu titulku
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.titleContains("Little Caprice"),
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector("main"))
+        ));
+
+        // Ověření výskytu textu
+        Assertions.assertTrue(driver.getPageSource().toLowerCase().contains("little caprice"),
+                "Searched key not found ...");
+
+
+    }
+
+    @Test
+    public void seznamSearchTests6() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        // Vyhledávací pole podle nového selektoru
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.name("ribbon--search")));
+
+        // Zadání dotazu
+        searchField.clear();
+        searchField.sendKeys("Paul McCartney");
+        searchField.sendKeys(Keys.ENTER); // submit nefunguje na tomhle webu
+        Thread.sleep(4000);
+        // Čekání na změnu titulku
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.titleContains("Paul McCartney"),
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector("main"))
+        ));
+
+        // Ověření výskytu textu
+        Assertions.assertTrue(driver.getPageSource().toLowerCase().contains("paul mccartney"),
+                "Searched key not found ...");
+
+
+    }
+
+
+
+@Test
+public void seznamSearchTests7() throws InterruptedException {
+    driver.manage().window().maximize();
+    driver.get("https://www.super.cz/");
+
+    // Vyhledávací pole podle nového selektoru
+    WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+            By.name("ribbon--search")));
+
+    // Zadání dotazu
+    searchField.clear();
+    searchField.sendKeys("Ashley Harkleroad");
+    searchField.sendKeys(Keys.ENTER); // submit nefunguje na tomhle webu
+    Thread.sleep(4000);
+    // Čekání na změnu titulku
+    wait.until(ExpectedConditions.or(
+            ExpectedConditions.titleContains("Ashley Harkleroad"),
+            ExpectedConditions.presenceOfElementLocated(By.cssSelector("main"))
+    ));
+
+    // Ověření výskytu textu
+    Assertions.assertTrue(driver.getPageSource().toLowerCase().contains("ashley harkleroad"),
+            "Searched key not found ...");
+
+
+}
+
+    @Test
+    public void seznamSearchClickFirstArticleTest() {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        // Vyhledávací pole
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.name("ribbon--search")));
+
+        // Zadání hledaného výrazu a Enter
+        searchField.clear();
+        searchField.sendKeys("Paul McCartney");
+        searchField.sendKeys(Keys.ENTER);
+
+        // Čekání na výsledky
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("main")));
+
+        // Vyhledání odkazů na články
+        List<WebElement> articleLinks = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector("main a[href*='super.cz/clanek']")));
+
+        Assertions.assertFalse(articleLinks.isEmpty(), "Nebyl nalezen žádný článek ve výsledcích.");
+
+        // Kliknutí na první nalezený článek
+        WebElement firstArticle = articleLinks.get(0);
+        String url = firstArticle.getAttribute("href");
+        firstArticle.click();
+
+        // Čekání na přesměrování na článek
+        wait.until(ExpectedConditions.urlToBe(url));
+
+        // Ověření, že URL odpovídá
+        Assertions.assertTrue(driver.getCurrentUrl().contains("super.cz/clanek"),
+                "Nepodařilo se otevřít článek.");
+    }
+
+    @Test
+    public void seznamSearchClickFirstArticleTest2() {
+        driver.manage().window().maximize();
+        driver.get("https://www.super.cz/");
+
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(By.name("ribbon--search")));
+        searchField.clear();
+        searchField.sendKeys("Paul McCartney");
+        searchField.sendKeys(Keys.ENTER);
+
+        // Počkej na první článek (odkaz obsahující 'super.cz/clanek')
+        List<WebElement> articleLinks = wait.until(
+                ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("a[href*='super.cz/clanek']"))
+        );
+
+        Assertions.assertFalse(articleLinks.isEmpty(), "Nebyly nalezeny žádné články.");
+
+        WebElement firstArticle = articleLinks.get(0);
+        String url = firstArticle.getAttribute("href");
+        firstArticle.click();
+
+        wait.until(ExpectedConditions.urlContains("super.cz/clanek"));
+
+        Assertions.assertTrue(driver.getCurrentUrl().contains("super.cz/clanek"),
+                "Nepodařilo se otevřít článek.");
+    }
 
 }
